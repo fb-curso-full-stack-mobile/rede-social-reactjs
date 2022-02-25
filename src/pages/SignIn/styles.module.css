@@ -1,0 +1,95 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  max-width: 900px;
+}
+
+.description {
+  flex: 1;
+  padding-top: 30px;
+}
+
+.description h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.description p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--box-background-color);
+  padding: var(--box-padding);
+  border-radius: var(--box-border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.form input {
+  height: var(--input-height);
+  border: 1px solid var(--border-color);
+  border-radius: var(--box-border-radius);
+  margin-bottom: var(--margin-medium);
+  padding: 0 8px;
+}
+
+.form hr {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form button {
+  height: var(--input-height);
+  border: 0;
+  border-radius: var(--box-border-radius);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  color: var(--primary-color-text);
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  opacity: 0.7;
+}
+
+.buttonCreateAccount {
+  background-color: var(--highlight-color) !important;
+  width: 200px;
+  align-self: center;
+}
+
+.form a {
+  text-align: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.form a:hover {
+  opacity: 0.7;
+}
+
+.page footer {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--box-background-color);
+  width: 100%;
+  padding-left: 200px;
+  color: var(--text-info);
+  font-size: 0.7rem;
+  line-height: 2rem;
+}
