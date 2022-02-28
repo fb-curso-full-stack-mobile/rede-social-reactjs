@@ -37,39 +37,10 @@
   box-shadow: var(--box-shadow);
 }
 
-.form input {
-  height: var(--input-height);
-  border: 1px solid var(--border-color);
-  border-radius: var(--box-border-radius);
-  margin-bottom: var(--margin-medium);
-  padding: 0 8px;
-}
-
 .form hr {
   width: 100%;
   border: 0;
   border-bottom: 1px solid var(--border-color);
-}
-
-.form button {
-  height: var(--input-height);
-  border: 0;
-  border-radius: var(--box-border-radius);
-  background-color: var(--primary-color);
-  font-weight: bold;
-  color: var(--primary-color-text);
-  margin-top: 8px;
-  cursor: pointer;
-}
-
-.form button:hover {
-  opacity: 0.7;
-}
-
-.buttonCreateAccount {
-  background-color: var(--highlight-color) !important;
-  width: 200px;
-  align-self: center;
 }
 
 .form a {
@@ -92,4 +63,17 @@
   color: var(--text-info);
   font-size: 0.7rem;
   line-height: 2rem;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalFormName {
+  display: flex;
+}
+
+.modalFormName div {
+  width: 8px;
 }
