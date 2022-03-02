@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  display: flex;
+  margin-left: 4px;
+}
+
+.container img {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.container div {
+  position: absolute;
+  background-color: var(--box-background-color);
+  padding: 10px;
+  border-radius: var(--box-border-radius);
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.6);
+  font-size: 0.8rem;
+  width: 200px;
+  margin-left: 22px;
+}

@@ -77,3 +77,22 @@
 .modalFormName div {
   width: 8px;
 }
+
+.modalFormBirthdateLabel {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.modalFormBirthdateSelects {
+  display: flex;
+}
+
+.modalFormBirthdateSelects select {
+  flex: 1;
+}
+
+.modalFormBirthdateSelects div {
+  width: 8px;
+}

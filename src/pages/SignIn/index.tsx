@@ -1,12 +1,34 @@
 import Button from "../../components/Button";
+import ContextualHelp from "../../components/ContextualHelp";
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
+import Select from "../../components/Select";
 import styles from "./styles.module.css";
 import { useState } from "react";
 // type SignInProps = {}
 
+const days = Array.from({ length: 31 }, (_, day) => day + 1);
+const months = Array.from({ length: 12 }, (_, monthNumber) => {
+  const date = new Date(0, monthNumber);
+  const month = date
+    .toLocaleDateString("pt-BR", { month: "short" })
+    .replace(".", "");
+  return month.charAt(0).toUpperCase() + month.slice(1);
+});
+const years = Array.from({ length: 120 }, (_, val) => {
+  return new Date().getFullYear() - val;
+});
+
 export default function SignIn() {
   const [modaOpen, setModalOpen] = useState(false);
+
+  const getCurrentMonthShort = () => {
+    const month = new Date()
+      .toLocaleDateString("pt-BR", { month: "short" })
+      .replace(".", "");
+    return month.charAt(0).toUpperCase() + month.slice(1);
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.box}>
@@ -42,6 +64,22 @@ export default function SignIn() {
           </div>
           <Input type="email" placeholder="Email" />
           <Input type="password" placeholder="Senha" />
+          <div className={styles.modalFormBirthdate}>
+            <div className={styles.modalFormBirthdateLabel}>
+              <label>Data de nascimento</label>
+              <ContextualHelp>
+                Ao informar sua data de nascimento, você ajuda a garantir que a
+                sua experiência na Rede Social seja adequada à sua idade.
+              </ContextualHelp>
+            </div>
+            <div className={styles.modalFormBirthdateSelects}>
+              <Select options={days} selected={new Date().getDate()} />
+              <div />
+              <Select options={months} selected={getCurrentMonthShort()} />
+              <div />
+              <Select options={years} />
+            </div>
+          </div>
           <Button secondary>Criar nova conta</Button>
         </form>
       </Modal>
