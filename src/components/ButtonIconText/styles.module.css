@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.container img {
+  margin-right: 8px;
+}
+
+.container label {
+  font-weight: bold;
+  color: var(--text-info);
+  font-size: 14px;
+}

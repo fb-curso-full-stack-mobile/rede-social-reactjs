@@ -1,13 +1,9 @@
 .container {
-  background-color: white;
-  box-shadow: var(--box-shadow);
-  border-radius: var(--box-border-radius);
-  padding: 14px;
   margin-top: 14px;
-  width: 650px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 14px;
 }
 .container input {
   flex: 1;

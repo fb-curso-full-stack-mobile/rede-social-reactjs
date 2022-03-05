@@ -1,0 +1,7 @@
+.container {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--box-border-radius);
+  padding: 14px;
+  width: 650px;
+}

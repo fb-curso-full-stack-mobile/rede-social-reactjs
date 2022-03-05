@@ -1,0 +1,32 @@
+.container hr {
+  border: 0;
+  border-bottom: 1px solid #ced0d4;
+}
+
+.userData {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.userData > div {
+  margin-left: 8px;
+}
+
+.userData > div > div {
+  font-weight: bold;
+}
+
+.userData > div > span {
+  font-size: 12px;
+  color: var(--text-info);
+}
+
+.postText {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.buttonLikeComment {
+  display: flex;
+  justify-content: space-around;
+}
