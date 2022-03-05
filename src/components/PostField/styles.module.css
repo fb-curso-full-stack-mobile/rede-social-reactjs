@@ -1,0 +1,20 @@
+.container {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--box-border-radius);
+  padding: 14px;
+  margin-top: 14px;
+  width: 650px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.container input {
+  flex: 1;
+  margin-left: 14px;
+  height: var(--input-height);
+  border-radius: calc(var(--input-height) / 2);
+  background-color: var(--input-background-color);
+  border: 0;
+  padding: 0 var(--input-padding);
+}

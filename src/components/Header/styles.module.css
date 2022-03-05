@@ -1,0 +1,22 @@
+.container {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 14px;
+}
+
+.container div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container div img {
+  margin-left: 14px;
+}
+
+.container div span {
+  margin-left: 8px;
+}

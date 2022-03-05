@@ -34,6 +34,8 @@ button {
   --text-info: #65676b;
   --input-height: 36px;
   --input-border-radius: 4px;
+  --input-background-color: #f0f2f5;
+  --input-padding: 14px;
   --box-padding: 0.875rem;
   --box-background-color: #ffffff;
   --box-border-radius: 4px;

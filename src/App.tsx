@@ -1,7 +1,8 @@
-import SignIn from "./pages/SignIn";
+import FeedPage from "./pages/FeedPage";
+import SignIn from "./pages/SignInPage";
 
 function App() {
-  return <SignIn />;
+  return <FeedPage />;
 }
 
 export default App;
