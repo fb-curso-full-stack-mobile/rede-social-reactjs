@@ -1,8 +1,17 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import FeedPage from "./pages/FeedPage";
-import SignIn from "./pages/SignInPage";
+import SignInPage from "./pages/SignInPage";
 
 function App() {
-  return <FeedPage />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignInPage />} />
+        <Route path="/feed" element={<FeedPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

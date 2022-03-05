@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import Modal from "../../components/Modal";
 import Select from "../../components/Select";
 import styles from "./styles.module.css";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 // type SignInProps = {}
 
@@ -21,6 +22,11 @@ const years = Array.from({ length: 120 }, (_, val) => {
 
 export default function SignIn() {
   const [modaOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const login = () => {
+    navigate("/feed");
+  };
 
   const getCurrentMonthShort = () => {
     const month = new Date()
@@ -39,7 +45,9 @@ export default function SignIn() {
         <div className={styles.form}>
           <Input placeholder="Email" type="email" />
           <Input placeholder="Senha" type="password" />
-          <Button fullWidth>Entrar</Button>
+          <Button fullWidth onClick={login}>
+            Entrar
+          </Button>
           <a href="javascript:void(0)">Esqueceu a senha?</a>
           <hr />
           <Button secondary onClick={() => setModalOpen(true)}>
