@@ -6,6 +6,7 @@ type ButtonProps = {
   primary?: boolean;
   secondary?: boolean;
   fullWidth?: boolean;
+  type?: "submit" | "reset" | "button" | undefined;
   onClick?: () => void;
 };
 
@@ -15,6 +16,7 @@ export default function Button({
   primary,
   secondary,
   fullWidth,
+  type,
   onClick,
 }: ButtonProps) {
   return (
@@ -26,6 +28,7 @@ export default function Button({
         className || "",
       ].join(" ")}
       onClick={onClick}
+      type={type}
     >
       {children}
     </button>

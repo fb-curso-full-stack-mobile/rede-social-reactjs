@@ -37,6 +37,21 @@
   box-shadow: var(--box-shadow);
 }
 
+.form form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.successMessage {
+  margin: 8px 0;
+  color: green;
+}
+
 .form hr {
   width: 100%;
   border: 0;
