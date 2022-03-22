@@ -18,10 +18,18 @@ export function useFetch<T = unknown>(
       headers: any = {}
     ) => {
       return new Promise<T>((resolve) => {
+        let authorization: any = {};
+        const token = localStorage.getItem("token");
+        if (token) {
+          authorization = {
+            Authorization: `Bearer ${token}`,
+          };
+        }
         const options: any = {
           headers: {
             "Content-Type": "application/json",
             ...headers,
+            ...authorization,
           },
           method,
         };
