@@ -9,7 +9,7 @@ type ContextualHelpProps = {
 
 export default function ContextualHelp({ children }: ContextualHelpProps) {
   const [helpVisible, setHelpVisible] = useState(false);
-  const componentRef = useRef<HTMLDivElement | null>();
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: any) => {
     if (componentRef.current && !componentRef.current.contains(event.target)) {
@@ -25,10 +25,7 @@ export default function ContextualHelp({ children }: ContextualHelpProps) {
   }, []);
 
   return (
-    <div
-      ref={(ref) => (componentRef.current = ref)}
-      className={styles.container}
-    >
+    <div ref={componentRef} className={styles.container}>
       <img src={icQuestion} onClick={() => setHelpVisible(true)} />
       {helpVisible && <div>{children}</div>}
     </div>

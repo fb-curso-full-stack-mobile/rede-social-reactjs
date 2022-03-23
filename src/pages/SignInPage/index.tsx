@@ -9,6 +9,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../contexts/auth-context";
 // type SignInProps = {}
 
 const days = Array.from({ length: 31 }, (_, day) => day + 1);
@@ -23,7 +24,7 @@ const years = Array.from({ length: 120 }, (_, val) => {
   return new Date().getFullYear() - val;
 });
 
-export default function SignIn() {
+export default function SignInPage() {
   const [modaOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const [day, setDay] = useState<string | number>("");
@@ -32,31 +33,25 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { register, handleSubmit } = useForm();
-  const { request, error, fetching } = useFetch<any>();
 
-  const login = async (data: any) => {
-    // navigate("/feed");
+  const { signIn, signUp, error, fetching } = useAuth();
+
+  const handleSignIn = async (data: any) => {
     setErrorMessage("");
     if (data.email && data.password) {
-      const json = await request("/api/v1/sign-in", "POST", data);
-      console.log(json);
-      if (json.token) {
-        localStorage.setItem("token", json.token);
-        navigate("/feed");
-      }
+      await signIn(data);
     } else {
       setErrorMessage("Preencha suas credenciais.");
     }
   };
 
-  const signup = async (data: any) => {
+  const handleSignUp = async (data: any) => {
     const user: User = { ...data };
     user.birthdate = `${day}/$${month}/${year}`;
     setErrorMessage("");
     if (user.name && user.surname && user.email && user.password) {
-      const json = await request("/api/v1/sign-up", "POST", user);
-      console.log(json);
-      if (json.user.id) {
+      const success = await signUp(user);
+      if (success) {
         setSuccessMessage("Cadastro feito com sucesso!");
         setModalOpen(false);
       }
@@ -81,7 +76,7 @@ export default function SignIn() {
           <p>Conecte-se com pessoas e compartilhe suas ideias</p>
         </div>
         <div className={styles.form}>
-          <form onSubmit={handleSubmit(login)}>
+          <form onSubmit={handleSubmit(handleSignIn)}>
             <Input
               placeholder="Email"
               type="email"
@@ -125,7 +120,10 @@ export default function SignIn() {
         visible={modaOpen}
         onClose={() => setModalOpen(false)}
       >
-        <form className={styles.modalForm} onSubmit={handleSubmit(signup)}>
+        <form
+          className={styles.modalForm}
+          onSubmit={handleSubmit(handleSignUp)}
+        >
           <div className={styles.modalFormName}>
             <Input placeholder="Nome" register={register} name="name" />
             <div />

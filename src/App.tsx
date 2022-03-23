@@ -1,16 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AuthContextProvider } from "./contexts/auth-context";
 
-import FeedPage from "./pages/FeedPage";
-import SignInPage from "./pages/SignInPage";
+import Routes from "./routes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SignInPage />} />
-        <Route path="/feed" element={<FeedPage />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthContextProvider>
+      <Routes />
+    </AuthContextProvider>
   );
 }
 

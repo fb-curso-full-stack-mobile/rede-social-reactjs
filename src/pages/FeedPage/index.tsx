@@ -12,7 +12,6 @@ type FeedResponse = {
 };
 
 export default function FeedPage() {
-  const [initialRequest, setInitialRequest] = useState(true);
   const [posts, setPosts] = useState<Post[]>([]);
   const { request, response, error } = useFetch<FeedResponse>();
 
@@ -30,10 +29,8 @@ export default function FeedPage() {
   }, [response, error]);
 
   useEffect(() => {
-    if (initialRequest) {
-      updatePostList();
-    }
-  }, [initialRequest, updatePostList]);
+    updatePostList();
+  }, [updatePostList]);
 
   return (
     <div>
