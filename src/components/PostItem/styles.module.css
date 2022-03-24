@@ -30,3 +30,19 @@
   display: flex;
   justify-content: space-around;
 }
+
+.commentContainer {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.commentContainer input {
+  flex: 1;
+  margin-left: 14px;
+  height: var(--input-height);
+  border-radius: calc(var(--input-height) / 2);
+  background-color: var(--input-background-color);
+  border: 0;
+  padding: 0 var(--input-padding);
+}

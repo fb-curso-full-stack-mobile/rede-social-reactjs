@@ -55,6 +55,11 @@ export function useFetch<T = unknown>(
     []
   );
 
+  const clear = () => {
+    setError(null);
+    setResponse(null);
+  };
+
   useEffect(() => {
     if (!endpoint) {
       return;
@@ -62,5 +67,5 @@ export function useFetch<T = unknown>(
     request(endpoint, method, data, headers);
   }, [data, endpoint, headers, method, request]);
 
-  return { request, response, error, fetching };
+  return { request, response, error, fetching, clear };
 }

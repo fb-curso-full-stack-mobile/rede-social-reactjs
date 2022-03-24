@@ -13,20 +13,35 @@ type FeedResponse = {
 
 export default function FeedPage() {
   const [posts, setPosts] = useState<Post[]>([]);
-  const { request, response, error } = useFetch<FeedResponse>();
+  const { request, response, error, clear } = useFetch<any>();
 
   const updatePostList = useCallback(() => {
     request("/api/v1/post");
   }, [request]);
 
+  const updatePost = async (post: Post) => {
+    request(`/api/v1/post/${post.id}`);
+  };
+
   useEffect(() => {
+    console.log("feed ", error, response);
     if (error) {
       console.log("updatePostList error: ", error);
     } else if (response) {
-      setPosts(response.posts);
-      console.log(response.posts);
+      if (response.posts) {
+        setPosts(response.posts);
+      } else if (response.post) {
+        const post = posts.find((p) => p.id === response.post.id);
+        if (post) {
+          const index = posts.indexOf(post);
+          setPosts((prevPosts) => {
+            return prevPosts.splice(index, 1, response.post);
+          });
+        }
+      }
     }
-  }, [response, error]);
+    clear();
+  }, [response, error, posts, clear]);
 
   useEffect(() => {
     updatePostList();
@@ -40,7 +55,11 @@ export default function FeedPage() {
         <PostField onNewPost={updatePostList} />
         {/* Posts */}
         {posts.map((post) => (
-          <PostItem key={`post-item-${post.id}`} post={post} />
+          <PostItem
+            key={`post-item-${post.id}`}
+            post={post}
+            onPostUpdated={updatePost}
+          />
         ))}
       </div>
     </div>
