@@ -45,6 +45,9 @@ export function useFetch<T = unknown>(
             if (!response.ok) {
               setError(json.message);
             }
+            if (json.newToken) {
+              localStorage.setItem("token", json.newToken);
+            }
             setResponse(json);
             resolve(json);
           })
