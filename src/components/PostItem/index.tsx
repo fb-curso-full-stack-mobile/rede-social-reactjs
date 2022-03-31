@@ -2,7 +2,7 @@ import Box from "../Box";
 import ButtonIconText from "../ButtonIconText";
 import UserPhoto from "../UserPhoto";
 import icComment from "../../assets/ic_comment.svg";
-import icLike from "../../assets/ic_like.svg";
+import IconLike from "../../assets/ic_like.svg?component";
 import styles from "./styles.module.css";
 import { Post } from "../../models/post";
 import { getDateFormatted } from "../../utils/date-utils";
@@ -18,7 +18,7 @@ type PostProps = {
 
 export default function PostItem({ post, onPostUpdated }: PostProps) {
   const { request, response, error, clear } = useFetch();
-  const { handleSubmit, register, setValue } = useForm();
+  const { handleSubmit, register, setValue, setFocus } = useForm();
 
   useEffect(() => {
     console.log("saveComment completed ", error, response);
@@ -37,6 +37,13 @@ export default function PostItem({ post, onPostUpdated }: PostProps) {
     request("/api/v1/comment", "POST", data);
     setValue("text", "");
   };
+
+  const onClickButtonLike = () => {};
+
+  const onClickButtonComment = () => {
+    setFocus("text");
+  };
+
   return (
     <Box className={styles.container}>
       {/* Dados do usuário */}
@@ -53,8 +60,19 @@ export default function PostItem({ post, onPostUpdated }: PostProps) {
       <hr />
       {/* Botões de curtir e comentar */}
       <div className={styles.buttonLikeComment}>
-        <ButtonIconText icon={icLike} label="Curtir" />
-        <ButtonIconText icon={icComment} label="Comentar" />
+        <ButtonIconText
+          label="Curtir"
+          onClick={onClickButtonLike}
+          active
+          badgeCount={2}
+        >
+          <IconLike />
+        </ButtonIconText>
+        <ButtonIconText
+          icon={icComment}
+          label="Comentar"
+          onClick={onClickButtonComment}
+        />
       </div>
       <hr />
       {/* <Comment /> */}
