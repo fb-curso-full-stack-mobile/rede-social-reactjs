@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { useForm } from "react-hook-form";
 import CommentItem from "../CommentItem";
+import { useAuth } from "../../contexts/auth-context";
 type PostProps = {
   post: Post;
   onPostUpdated: (post: Post) => void;
@@ -19,6 +20,7 @@ type PostProps = {
 export default function PostItem({ post, onPostUpdated }: PostProps) {
   const { request, response, error, clear } = useFetch();
   const { handleSubmit, register, setValue, setFocus } = useForm();
+  const { user } = useAuth();
 
   useEffect(() => {
     console.log("saveComment completed ", error, response);
@@ -38,7 +40,9 @@ export default function PostItem({ post, onPostUpdated }: PostProps) {
     setValue("text", "");
   };
 
-  const onClickButtonLike = () => {};
+  const onClickButtonLike = () => {
+    request("/api/v1/like", "POST", { postId: post.id });
+  };
 
   const onClickButtonComment = () => {
     setFocus("text");
@@ -63,8 +67,16 @@ export default function PostItem({ post, onPostUpdated }: PostProps) {
         <ButtonIconText
           label="Curtir"
           onClick={onClickButtonLike}
-          active
-          badgeCount={2}
+          active={
+            post.likes
+              ? post.likes.find((like) => like.userId === user?.id || 0) !==
+                undefined
+              : false
+          }
+          badgeCount={post.likes?.length || 0}
+          list={post.likes?.map(
+            (like) => `${like.user.name} ${like.user.surname}`
+          )}
         >
           <IconLike />
         </ButtonIconText>

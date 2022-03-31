@@ -1,4 +1,5 @@
 import { Comment } from "./comment";
+import { Like } from "./like";
 import { User } from "./user";
 
 export type Post = {
@@ -9,4 +10,5 @@ export type Post = {
   updatedAt: Date;
   user?: User;
   comments?: Comment[];
+  likes?: Like[];
 };

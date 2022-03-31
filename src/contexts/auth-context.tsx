@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useFetch } from "../hooks/useFetch";
 import { User } from "../models/user";
 
@@ -10,6 +16,7 @@ type AuthContextData = {
   error: string | undefined | null;
   fetching: boolean;
   logout: () => void;
+  user: User | null;
 };
 
 type AuthProviderProps = {
@@ -23,6 +30,7 @@ export const AuthContext = createContext<AuthContextData>(
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
   const { request, error, fetching } = useFetch<any>();
+  const [user, setUser] = useState<User | null>(null);
 
   const signIn = async (data: any) => {
     const json = await request("/api/v1/sign-in", "POST", data);
@@ -45,9 +53,18 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     setToken(null);
   };
 
+  const getUser = useCallback(async () => {
+    if (user) return;
+    const json = await request("/api/v1/user/me");
+    if (json.user) {
+      setUser(json.user);
+    }
+  }, [request, user]);
+
   useEffect(() => {
     setToken(localStorage.getItem("token"));
-  }, []);
+    getUser();
+  }, [getUser]);
 
   const authContext = {
     token,
@@ -57,6 +74,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     error,
     fetching,
     logout,
+    user,
   };
 
   return (
