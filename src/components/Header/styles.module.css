@@ -1,22 +1,76 @@
 .container {
-  background-color: white;
-  box-shadow: var(--box-shadow);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 5px 14px;
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 14px;
 }
 
-.container div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.containerLogo {
+    display: flex;
+    justify-content: center;
 }
 
-.container div img {
-  margin-left: 14px;
+.containerLogo label {
+    background-color: #f0f2f5;
+    margin-left: 12px;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    border-radius: 20px;
 }
 
-.container div span {
-  margin-left: 8px;
+.containerLogo span {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    box-sizing: border-box;
+}
+
+.containerLogoSpan svg {
+    animation-name: magnifier-anim;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes magnifier-anim {
+    from {
+        margin-left: 0;
+    }
+    to {
+        margin-left: -20px;
+        opacity: 0;
+    }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.containerLogo input {
+    padding: 8px;
+    background-color: transparent;
+    border: 0;
+    outline-style: none;
+}
+
+.containerUser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.containerUser img {
+    margin-left: 14px;
+}
+
+.containerUser span {
+    margin-left: 8px;
 }

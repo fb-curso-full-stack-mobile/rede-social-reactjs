@@ -1,0 +1,20 @@
+.container {
+    margin-top: 12px;
+}
+.container hr {
+    border: 0;
+    border-bottom: 1px solid #ced0d4;
+}
+
+.userData {
+    display: flex;
+    margin-bottom: 14px;
+}
+
+.userData > div {
+    margin-left: 8px;
+}
+
+.userData > div > div {
+    font-weight: bold;
+}

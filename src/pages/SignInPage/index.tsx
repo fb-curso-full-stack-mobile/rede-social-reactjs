@@ -5,11 +5,9 @@ import Modal from "../../components/Modal";
 import Select from "../../components/Select";
 import { User } from "../../models/user";
 import styles from "./styles.module.css";
-import { useFetch } from "../../hooks/useFetch";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useAuth } from "../../contexts/auth-context";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 // type SignInProps = {}
 
 const days = Array.from({ length: 31 }, (_, day) => day + 1);
@@ -26,7 +24,6 @@ const years = Array.from({ length: 120 }, (_, val) => {
 
 export default function SignInPage() {
   const [modaOpen, setModalOpen] = useState(false);
-  const navigate = useNavigate();
   const [day, setDay] = useState<string | number>("");
   const [month, setMonth] = useState<string | number>("");
   const [year, setYear] = useState<string | number>("");
@@ -34,7 +31,7 @@ export default function SignInPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const { register, handleSubmit } = useForm();
 
-  const { signIn, signUp, error, fetching } = useAuth();
+  const { signIn, signUp, error } = useAuth();
 
   const handleSignIn = async (data: any) => {
     setErrorMessage("");

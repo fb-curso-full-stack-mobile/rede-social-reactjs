@@ -5,8 +5,9 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { useFetch } from "../hooks/useFetch";
+
 import { User } from "../models/user";
+import { useFetch } from "../hooks/useFetch";
 
 type AuthContextData = {
   token: string | null;
@@ -63,7 +64,9 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
-    getUser();
+    if (localStorage.getItem("token")) {
+      getUser();
+    }
   }, [getUser]);
 
   const authContext = {

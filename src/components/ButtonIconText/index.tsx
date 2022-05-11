@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import styles from "./styles.module.css";
+
 type ButtonIconTextProps = {
   icon?: any;
   children?: React.ReactNode;
@@ -47,8 +49,8 @@ export default function ButtonIconText({
       {children ? children : null}
       <label>{label}</label>
       <div>
-        {badgeCount ? <span ref={componentRef}>{badgeCount}</span> : null}
-        {showList && list && (
+        {badgeCount || 0 > 0 ? <span ref={componentRef}>{badgeCount}</span> : null}
+        {(badgeCount || 0) > 0 && showList && list && (
           <div className={styles.badgeListItems}>
             {list.map((item, index) => (
               <div key={`like-badge-list-item-${index}`}>{item}</div>
