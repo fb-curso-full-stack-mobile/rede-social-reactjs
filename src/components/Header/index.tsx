@@ -1,3 +1,5 @@
+import Tab, { TabItem } from "./Tab";
+
 import { User } from "../../models/user";
 import UserPhoto from "../UserPhoto";
 import icDropdown from "../../assets/ic_dropdown.svg";
@@ -6,11 +8,18 @@ import styles from "./styles.module.css";
 import { useAuth } from "../../contexts/auth-context";
 import { useFetch } from "../../hooks/useFetch";
 import { useState } from "react";
+
 type HeaderProps = {
     onSearchResult?: (users: User[]) => void;
+    tab: TabItem;
+    onTabChanged: (currentTab: TabItem) => void;
 };
 
-export default function Header({ onSearchResult }: HeaderProps) {
+export default function Header({
+    onSearchResult,
+    tab,
+    onTabChanged,
+}: HeaderProps) {
     const { logout } = useAuth();
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchText, setSearchText] = useState("");
@@ -30,8 +39,10 @@ export default function Header({ onSearchResult }: HeaderProps) {
 
     return (
         <div className={styles.container}>
+            {/* LOGO */}
             <div className={styles.containerLogo}>
                 <img src={logo} />
+                {/* SEARCH */}
                 <label>
                     <span
                         className={
@@ -80,6 +91,20 @@ export default function Header({ onSearchResult }: HeaderProps) {
                     />
                 </label>
             </div>
+            {/* TABS */}
+            <div className={styles.containerTabs}>
+                <Tab
+                    active={tab}
+                    tabItem={TabItem.Feed}
+                    onClick={onTabChanged}
+                />
+                <Tab
+                    active={tab}
+                    tabItem={TabItem.Friends}
+                    onClick={onTabChanged}
+                />
+            </div>
+            {/* PROFILE */}
             <div className={styles.containerUser}>
                 <UserPhoto small />
                 <span>Nome do Usuário</span>

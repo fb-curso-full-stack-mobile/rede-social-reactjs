@@ -4,12 +4,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px 14px;
 }
 
 .containerLogo {
     display: flex;
     justify-content: center;
+    padding: 5px 14px;
 }
 
 .containerLogo label {
@@ -61,10 +61,16 @@
     outline-style: none;
 }
 
+.containerTabs {
+    display: flex;
+    flex-direction: row;
+}
+
 .containerUser {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 5px 14px;
 }
 
 .containerUser img {

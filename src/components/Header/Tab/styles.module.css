@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--inactive-color);
+    cursor: pointer;
+    height: 100%;
+    width: 110px;
+}
+
+.container:hover {
+    background-color: #eee;
+}
+
+.container > div {
+    height: 3px;
+    background-color: transparent;
+    width: 100%;
+}
+
+.active {
+    color: var(--primary-color);
+}
+
+.active > div {
+    background-color: var(--primary-color);
+}
